@@ -6,7 +6,7 @@ Apple/aimv2 for-qiita-article
 以下に、モデルのサイズが小さい順に並べたリストを示します。名前の中にある情報（`large` → `huge` → `1B` → `3B` など）や入力解像度（`224` → `336` → `448`）を基準にしています。
 
 ### サイズが小さい順のモデル
-1. **`apple/aimv2-large-patch14-224`**
+1. **`apple/aimv2-large-patch14-224`** <br>
     [Update at 2024/11/26 aimv2-large-patch14-224作業の場所](https://github.com/syun88/aimv2-project-for-qiita-article/tree/main/aimv2-large-patch14-224)
 2. **`apple/aimv2-large-patch14-224-distilled`**
 3. **`apple/aimv2-large-patch14-224-lit`**
