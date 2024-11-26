@@ -2,7 +2,9 @@
 [APPLE GITHUB README](https://github.com/apple/ml-aim/blob/main/README.md)
 
 ## 公式のInstallation
-pytorch install 公式サイトに参照
+**CUDA のバージョンに応じて適切なバージョンｄにｓインストールしてください。ここでは説明しない。多くの記事はこの世の中に存在している。**
+
+### pytorch install 公式サイトに参照
 [installation instructions](https://pytorch.org/get-started/locally/).
 パケージのインストール
 
@@ -13,9 +15,9 @@ pip install 'git+https://github.com/apple/ml-aim.git#subdirectory=aim-v2'
 
 **MLXに対応も可能だそうです**
 
-###MLXとはMLX is an array framework for machine learning on Apple silicon, brought to you by Apple machine learning research.
-###MLXは、アップルの機械学習研究によってもたらされた、アップルのシリコン上での機械学習のための配列フレームワークです。
-つまりこれでApple の **MAC シリコン M chip **で動作も可能です。
+### MLXとはMLX is an array framework for machine learning on Apple silicon, brought to you by Apple machine learning research.
+### MLXは、アップルの機械学習研究によってもたらされた、アップルのシリコン上での機械学習のための配列フレームワークです。
+### つまりこれでApple の **MAC シリコン M chip **で動作も可能です。
 [MLX](https://ml-explore.github.io/mlx/) backend support for research and experimentation on Apple silicon.
 To enable MLX support, simply run:
 ```commandline
