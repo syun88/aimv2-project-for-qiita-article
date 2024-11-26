@@ -29,6 +29,15 @@ transformers のインストール
 pip install transformers
 ```
 
+cuda version check 
+```commandline
+nvidia-smi
+```
+or
+```commandline
+nvcc --version
+```
+
 # aimv2-project-for-qiita-article
 Apple/aimv2 for-qiita-article
 以下に、モデルのサイズが小さい順に並べたリストを示します。名前の中にある情報（`large` → `huge` → `1B` → `3B` など）や入力解像度（`224` → `336` → `448`）を基準にしています。
