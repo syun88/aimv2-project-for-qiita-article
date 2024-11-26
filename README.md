@@ -30,7 +30,7 @@ Apple/aimv2 for-qiita-article
 
 ### サイズが小さい順のモデル
 1. **`apple/aimv2-large-patch14-224`** <br>
-    [Update at 2024/11/26 <br> aimv2-large-patch14-224作業の場所](https://github.com/syun88/aimv2-project-for-qiita-article/tree/main/aimv2-large-patch14-224)
+    [Update at 2024/11/26 <br> aimv2-large-patch14-224の場所→](https://github.com/syun88/aimv2-project-for-qiita-article/tree/main/aimv2-large-patch14-224)
 2. **`apple/aimv2-large-patch14-224-distilled`**
 3. **`apple/aimv2-large-patch14-224-lit`**
 4. **`apple/aimv2-large-patch14-native`**
