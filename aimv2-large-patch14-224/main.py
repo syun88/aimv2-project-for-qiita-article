@@ -1,3 +1,4 @@
+# original code 
 # import requests
 # from PIL import Image
 # from transformers import AutoImageProcessor, AutoModel
@@ -17,7 +18,7 @@
 # outputs = model(**inputs)
 # print(outputs)
 # print(outputs.last_hidden_state.shape)
-# original code 
+
 
 import requests
 from PIL import Image
