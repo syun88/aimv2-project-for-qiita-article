@@ -1,6 +1,27 @@
 # APPLE 公式さGITHUB readme Link 
 [APPLE GITHUB README](https://github.com/apple/ml-aim/blob/main/README.md)
 
+## 公式のInstallation
+pytorch install 公式サイトに参照
+[installation instructions](https://pytorch.org/get-started/locally/).
+パケージのインストール
+
+```commandline
+pip install 'git+https://github.com/apple/ml-aim.git#subdirectory=aim-v1'
+pip install 'git+https://github.com/apple/ml-aim.git#subdirectory=aim-v2'
+```
+
+**MLXに対応も可能だそうです**
+
+###MLXとはMLX is an array framework for machine learning on Apple silicon, brought to you by Apple machine learning research.
+###MLXは、アップルの機械学習研究によってもたらされた、アップルのシリコン上での機械学習のための配列フレームワークです。
+つまりこれでApple の **MAC シリコン M chip **で動作も可能です。
+[MLX](https://ml-explore.github.io/mlx/) backend support for research and experimentation on Apple silicon.
+To enable MLX support, simply run:
+```commandline
+pip install mlx
+```
+
 # aimv2-project-for-qiita-article
 Apple/aimv2 for-qiita-article
 以下に、モデルのサイズが小さい順に並べたリストを示します。名前の中にある情報（`large` → `huge` → `1B` → `3B` など）や入力解像度（`224` → `336` → `448`）を基準にしています。
