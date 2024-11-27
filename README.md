@@ -17,7 +17,7 @@ pip install 'git+https://github.com/apple/ml-aim.git#subdirectory=aim-v2'
 
 ### MLXとはMLX is an array framework for machine learning on Apple silicon, brought to you by Apple machine learning research.
 ### MLXは、アップルの機械学習研究によってもたらされた、アップルのシリコン上での機械学習のための配列フレームワークです。
-### つまりこれでApple の **MAC シリコン M chip **で動作も可能です。
+### つまりこれでAppleの**MAC シリコン M chip** で動作も可能です。
 [MLX](https://ml-explore.github.io/mlx/) backend support for research and experimentation on Apple silicon.
 To enable MLX support, simply run:
 ```commandline
