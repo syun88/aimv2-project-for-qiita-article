@@ -65,5 +65,5 @@ if __name__ == "__main__":
     best_match_file, similarity_score = find_most_similar_image(query_features, features_dict)
     print(f"Most similar image: {best_match_file}")
     print(f"Similarity score: {similarity_score:.4f}")
-    # Image.open(f"/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/coco_image/val2017{best_match_file}")
-    # Image.open(query_image_path)
+    Image.open(f"/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/coco_image/val2017/{best_match_file}")
+    Image.open(query_image_path)
