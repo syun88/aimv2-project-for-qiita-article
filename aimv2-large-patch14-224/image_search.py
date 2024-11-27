@@ -1,6 +1,7 @@
 import os
 import torch
 from PIL import Image
+import cv2
 from sklearn.metrics.pairwise import cosine_similarity
 from transformers import AutoImageProcessor, AutoModel
 
@@ -65,5 +66,15 @@ if __name__ == "__main__":
     best_match_file, similarity_score = find_most_similar_image(query_features, features_dict)
     print(f"Most similar image: {best_match_file}")
     print(f"Similarity score: {similarity_score:.4f}")
-    Image.open(f"/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/coco_image/val2017/{best_match_file}")
-    Image.open(query_image_path)
+    best_image = Image.open(f"/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/coco_image/val2017/{best_match_file}")
+    query_search_image = Image.open(query_image_path)
+    best_image.show()
+    query_search_image.show()
+    # best_image = cv2.imread(f"/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/coco_image/val2017/{best_match_file}")
+    # cv2.imshow("best_image", best_image)
+    # query_search_image = cv2.imread(query_image_path)
+    # cv2.imshow("query_search_image", query_search_image)
+    # # ウィンドウを保持する
+    # print("Press any key to close the images...")
+    # cv2.waitKey(0)  # キー入力を待つ
+    # cv2.destroyAllWindows()  # ウィンドウを閉じる
