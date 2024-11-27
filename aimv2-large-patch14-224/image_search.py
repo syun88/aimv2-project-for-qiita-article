@@ -70,11 +70,3 @@ if __name__ == "__main__":
     query_search_image = Image.open(query_image_path)
     best_image.show()
     query_search_image.show()
-    # best_image = cv2.imread(f"/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/coco_image/val2017/{best_match_file}")
-    # cv2.imshow("best_image", best_image)
-    # query_search_image = cv2.imread(query_image_path)
-    # cv2.imshow("query_search_image", query_search_image)
-    # # ウィンドウを保持する
-    # print("Press any key to close the images...")
-    # cv2.waitKey(0)  # キー入力を待つ
-    # cv2.destroyAllWindows()  # ウィンドウを閉じる
