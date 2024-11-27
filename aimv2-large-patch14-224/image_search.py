@@ -16,6 +16,7 @@ def get_query_features(query_image_path):
     query_image = Image.open(query_image_path).convert("RGB")
     query_inputs = processor(images=query_image, return_tensors="pt").to(device)
     query_outputs = model(**query_inputs)
+    # print(query_outputs)
     query_features = query_outputs.last_hidden_state.mean(dim=1).detach().cpu()
     return query_features
 
