@@ -38,8 +38,7 @@ or
 nvcc --version
 ```
 
-Use  `tqdm ` in  `prepare_feature.py `  to visualize the progress of your code.  <br>
-install tqdm
+install `tqdm` `tqdm` in  `prepare_feature.py `  to visualize the progress of your code. 
 ```commandline
 pip install tqdm
 ```
