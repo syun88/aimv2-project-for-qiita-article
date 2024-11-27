@@ -43,6 +43,12 @@ install `tqdm` `tqdm` in  `prepare_feature.py`  to visualize the progress of you
 pip install tqdm
 ```
 
+dowonload val2017
+```commacdline
+    wget -c http://images.cocodataset.org/zips/val2017.zip
+    unzip
+``` 
+
 # aimv2-project-for-qiita-article
 Apple/aimv2 for-qiita-article
 以下に、モデルのサイズが小さい順に並べたリストを示します。名前の中にある情報（`large` → `huge` → `1B` → `3B` など）や入力解像度（`224` → `336` → `448`）を基準にしています。
