@@ -23,6 +23,7 @@ def extract_features(image_dir, save_path):
             image = Image.open(img_path).convert("RGB")
             inputs = processor(images=image, return_tensors="pt").to(device)
             outputs = model(**inputs)
+            # print(outputs)
             features = outputs.last_hidden_state.mean(dim=1).detach().cpu()
             features_dict[img_file] = features
         except Exception as e:
