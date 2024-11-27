@@ -38,7 +38,8 @@ or
 nvcc --version
 ```
 
-install tqdm to show prepare_feature.py time
+Use  `tqdm ` in  `prepare_feature.py `  to visualize the progress of your code.
+install tqdm
 ```commandline
 pip install tqdm
 ```
