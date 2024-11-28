@@ -49,6 +49,11 @@ wget -c http://images.cocodataset.org/zips/val2017.zip
 unzip
 ``` 
 
+AppleのAIMv2でマルチモーダル機能を活用編1「画像領域特徴量の抽出とテキストで画像領域の可視化」の起動コマンド
+```commandline
+python3 aimv2-large-patch14-224-lit/image_search_from_text_and_show.py 
+```
+
 # aimv2-project-for-qiita-article
 Apple/aimv2 for-qiita-article
 以下に、モデルのサイズが小さい順に並べたリストを示します。名前の中にある情報（`large` → `huge` → `1B` → `3B` など）や入力解像度（`224` → `336` → `448`）を基準にしています。
