@@ -45,8 +45,8 @@ pip install tqdm
 
 dowonload val2017
 ```commacdline
-    wget -c http://images.cocodataset.org/zips/val2017.zip
-    unzip
+wget -c http://images.cocodataset.org/zips/val2017.zip
+unzip
 ``` 
 
 # aimv2-project-for-qiita-article
