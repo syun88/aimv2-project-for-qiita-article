@@ -10,7 +10,7 @@ model = AutoModel.from_pretrained("apple/aimv2-large-patch14-224-lit", trust_rem
 
 # 入力画像とテキスト
 image = Image.open("/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/coco_image/val2017/000000010363.jpg")
-text = ["cat", "dog", "bird"]
+text = ["cat", "dog", "bird","GTR"]
 
 # スライディングウィンドウの設定
 window_size = 100
@@ -18,7 +18,7 @@ stride = 50
 
 # 類似度の結果を格納するリスト
 high_score_regions = []
-threshold = 0.8  # 類似度の閾値
+threshold = 0.85  # 類似度の閾値
 
 # 画像サイズを取得
 width, height = image.size
@@ -45,7 +45,7 @@ draw = ImageDraw.Draw(draw_image)
 
 for region in high_score_regions:
     x, y, w, h, label, score = region
-    draw.rectangle([(x, y), (x + w, y + h)], outline="red", width=3)  # 赤い枠を描画
+    draw.rectangle([(x, y), (x + w, y + h)], outline="red", width=1)  # 赤い枠を描画
     draw.text((x, y - 10), f"{label}: {score:.2f}", fill="red")  # ラベルとスコアを描画
 
 # 結果を表示
