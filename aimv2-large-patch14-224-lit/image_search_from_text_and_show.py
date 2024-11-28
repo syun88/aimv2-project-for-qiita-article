@@ -10,7 +10,7 @@ model = AutoModel.from_pretrained("apple/aimv2-large-patch14-224-lit", trust_rem
 
 # 入力画像とテキスト
 image = Image.open("/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/coco_image/val2017/000000010363.jpg")
-text = ["cat", "dog", "bird","GTR"]
+text = ["cat", "dog", "bird"]
 
 # スライディングウィンドウの設定
 window_size = 100
