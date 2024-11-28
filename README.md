@@ -58,7 +58,7 @@ Apple/aimv2 for-qiita-article
     [Update at 2024/11/26 <br> aimv2-large-patch14-224の場所→](https://github.com/syun88/aimv2-project-for-qiita-article/tree/main/aimv2-large-patch14-224)
 2. **`apple/aimv2-large-patch14-224-distilled`**
 3. **`apple/aimv2-large-patch14-224-lit`**<br>
-    [Update at 2024/11/26 <br> aimv2-large-patch14-224の場所→](https://github.com/syun88/aimv2-project-for-qiita-article/tree/main/aimv2-large-patch14-224-lit)
+    [Update at 2024/11/29 <br> aimv2-large-patch14-224の場所→](https://github.com/syun88/aimv2-project-for-qiita-article/tree/main/aimv2-large-patch14-224-lit)
 4. **`apple/aimv2-large-patch14-native`**
 5. **`apple/aimv2-large-patch14-336`**
 6. **`apple/aimv2-large-patch14-336-distilled`**
