@@ -53,6 +53,12 @@ cocodataset のimageをモデル化
 ```commandline
 python3 aimv2-large-patch14-224/prepare_features.py 
 ```
+aimv2-large-patch14-224/image_search.py の起動のやり方のサンプルコマンド
+```commandline
+python3 aimv2-large-patch14-224/image_search.py /media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/gtr.jpg --features /media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/model/coco_features.pt
+```
+python3 aimv2-large-patch14-224/image_search.py 類似度入力に使うcocodataset内に存在していない画像 --features /path/model/coco_features.pt
+`類似度入力に使うcocodataset内に存在していない画像` と `/path/model/coco_features.pt` はpathに置き換え
 
 AppleのAIMv2でマルチモーダル機能を活用編1「画像領域特徴量の抽出とテキストで画像領域の可視化」の起動コマンド
 ```commandline
