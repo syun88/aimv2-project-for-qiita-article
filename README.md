@@ -49,6 +49,11 @@ wget -c http://images.cocodataset.org/zips/val2017.zip
 unzip
 ``` 
 
+cocodataset のimageをモデル化
+```commandline
+python3 aimv2-large-patch14-224/prepare_features.py 
+```
+
 AppleのAIMv2でマルチモーダル機能を活用編1「画像領域特徴量の抽出とテキストで画像領域の可視化」の起動コマンド
 ```commandline
 python3 aimv2-large-patch14-224-lit/image_search_from_text_and_show.py 
