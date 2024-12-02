@@ -48,6 +48,8 @@ dowonload val2017
 wget -c http://images.cocodataset.org/zips/val2017.zip
 unzip
 ``` 
+## Qiita DAY1 
+[Qitta DAY1](https://qiita.com/syun88/items/50c1d60d1516d5816773)
 
 cocodataset のimageをモデル化
 ```commandline
@@ -59,6 +61,9 @@ python3 aimv2-large-patch14-224/image_search.py /media/syun/ssd02/python_learnin
 ```
 python3 aimv2-large-patch14-224/image_search.py 類似度入力に使うcocodataset内に存在していない画像 --features /path/model/coco_features.pt
 `類似度入力に使うcocodataset内に存在していない画像` と `/path/model/coco_features.pt` はpathに置き換え
+
+## Qitta DAY2 
+[Qitta DAY2](https://qiita.com/syun88/items/11089454e046fe5e3f4d)
 
 AppleのAIMv2でマルチモーダル機能を活用編1「画像領域特徴量の抽出とテキストで画像領域の可視化」の起動コマンド
 ```commandline
