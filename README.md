@@ -69,7 +69,7 @@ AppleのAIMv2でマルチモーダル機能を活用編1「画像領域特徴量
 ```commandline
 python3 aimv2-large-patch14-224-lit/image_search_from_text_and_show.py 
 ```
-#Qitta Day3
+# Qitta Day3
 
 AppleのAIMv2でマルチモーダル機能を活用編2 「最近話題になった日本国産のフレームワーク「TkEasyGUI」連携編」
 ```commandline
