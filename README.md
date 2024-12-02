@@ -48,7 +48,7 @@ dowonload val2017
 wget -c http://images.cocodataset.org/zips/val2017.zip
 unzip
 ``` 
-## Qiita DAY1 
+# Qiita DAY1 
 [Qitta DAY1](https://qiita.com/syun88/items/50c1d60d1516d5816773)
 
 cocodataset のimageをモデル化
@@ -62,17 +62,29 @@ python3 aimv2-large-patch14-224/image_search.py /media/syun/ssd02/python_learnin
 python3 aimv2-large-patch14-224/image_search.py 類似度入力に使うcocodataset内に存在していない画像 --features /path/model/coco_features.pt
 `類似度入力に使うcocodataset内に存在していない画像` と `/path/model/coco_features.pt` はpathに置き換え
 
-## Qitta DAY2 
+# Qitta DAY2 
 [Qitta DAY2](https://qiita.com/syun88/items/11089454e046fe5e3f4d)
 
 AppleのAIMv2でマルチモーダル機能を活用編1「画像領域特徴量の抽出とテキストで画像領域の可視化」の起動コマンド
 ```commandline
 python3 aimv2-large-patch14-224-lit/image_search_from_text_and_show.py 
 ```
+#Qitta Day3
 
-# aimv2-project-for-qiita-article
+AppleのAIMv2でマルチモーダル機能を活用編2 「最近話題になった日本国産のフレームワーク「TkEasyGUI」連携編」
+```commandline
+pip install TkEasyGUI pillow
+```
+```
+python3 main.py
+```
+
+
+## aimv2-project-for-qiita-article
 Apple/aimv2 for-qiita-article
 以下に、モデルのサイズが小さい順に並べたリストを示します。名前の中にある情報（`large` → `huge` → `1B` → `3B` など）や入力解像度（`224` → `336` → `448`）を基準にしています。
+
+
 
 ### サイズが小さい順のモデル
 1. **`apple/aimv2-large-patch14-224`** <br>
