@@ -71,12 +71,15 @@ python3 aimv2-large-patch14-224-lit/image_search_from_text_and_show.py
 ```
 # Qitta Day3
 
+[Qitta DAY3](https://qiita.com/syun88/items/)
+
 AppleのAIMv2でマルチモーダル機能を活用編2 「最近話題になった日本国産のフレームワーク「TkEasyGUI」連携編」
 ```commandline
 pip install TkEasyGUI pillow
+pip install japanize-matplotlib
 ```
 ```
-python3 main.py
+python3 aimv2-large-patch14-224-lit/main.py 
 ```
 
 
