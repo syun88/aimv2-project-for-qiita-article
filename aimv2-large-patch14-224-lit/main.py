@@ -1,105 +1,88 @@
-import os
-import matplotlib.pyplot as plt
-import japanize_matplotlib
+from ultralytics import YOLO
 from PIL import Image, ImageDraw
 from transformers import AutoProcessor, AutoModel
-import TkEasyGUI as eg
-from tqdm import tqdm
+import torch
 
-# モデルとプロセッサのロード
+# YOLOモデルのロード
+yolo_model = YOLO("yolov8n.pt")
+image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/apple.jpg"
+
+# AIMv2モデルのロード
 processor = AutoProcessor.from_pretrained("apple/aimv2-large-patch14-224-lit")
 model = AutoModel.from_pretrained("apple/aimv2-large-patch14-224-lit", trust_remote_code=True)
 
-# GUIを作成
-layout = [
-    [eg.Text("フォルダーを選択してください。")],
-    [eg.Button("フォルダー選択", key="-SELECT_FOLDER-")],
-    [eg.Text("検索キーワードを入力してください。")],
-    [eg.Input("", key="-SEARCH_TEXT-")],
-    [eg.Button("検索開始", key="-SEARCH-")],
-    [eg.Button("閉じる", key="-CLOSE-")],
-]
+# 条件テキスト
+query_text = ["red apple","green apple"]
+# 類似度の結果を格納するリスト
+high_score_regions = []
+threshold = 0.8  # 類似度の閾値
+# YOLOで物体検出
+image = Image.open(image_path).convert("RGB")
+width, height = image.size  # 元画像サイズを取得
+results = yolo_model(image_path)
+detections = results[0].boxes
 
-window = eg.Window("画像検索システム", layout=layout)
+# スケールを計算
+inference_shape = results[0].orig_shape  # YOLO推論時の画像サイズ
+scale_x = width / inference_shape[1]
+scale_y = height / inference_shape[0]
 
-selected_dir = None
+# YOLOの結果を描画
+draw_yolo = image.copy()
+draw = ImageDraw.Draw(draw_yolo)
 
-while True:
-    event, values = window.read()
+for detection in detections:
+    x1, y1, x2, y2 = map(int, detection.xyxy[0])
+    x1 = int(x1 * scale_x)
+    y1 = int(y1 * scale_y)
+    x2 = int(x2 * scale_x)
+    y2 = int(y2 * scale_y)
 
-    if event == "-CLOSE-" or event is None:
-        break
+    label = yolo_model.names[int(detection.cls)]
+    confidence = detection.conf.item()
 
-    if event == "-SELECT_FOLDER-":
-        selected_dir = eg.popup_get_folder("フォルダーを選択してください。")
-        if selected_dir:
-            eg.popup(f"選択したフォルダー: {selected_dir}")
+    draw.rectangle([(x1, y1), (x2, y2)], outline="green", width=2)
+    draw.text((x1, y1 - 10), f"{label}: {confidence:.2f}", fill="green")
 
-    if event == "-SEARCH-":
-        if not selected_dir:
-            eg.popup("先にフォルダーを選択してください。")
-            continue
+# AIMv2で条件に一致する領域を特定
+refined_results = []
 
-        search_text = values["-SEARCH_TEXT-"]
-        if not search_text:
-            eg.popup("検索キーワードを入力してください。")
-            continue
+for detection in detections:
+    x1, y1, x2, y2 = map(int, detection.xyxy[0])
+    x1 = int(x1 * scale_x)
+    y1 = int(y1 * scale_y)
+    x2 = int(x2 * scale_x)
+    y2 = int(y2 * scale_y)
 
-        # 画像検索処理
-        images = [f for f in os.listdir(selected_dir) if f.endswith(".jpg")]
-        if not images:
-            eg.popup("選択したフォルダーに画像がありません。")
-            continue
+    # YOLOで検出した領域を切り出し
+    region = image.crop((x1, y1, x2, y2))
+    
+    # リサイズ
+    region_resized = region.resize((224, 224), Image.Resampling.LANCZOS)
 
-        # スライディングウィンドウの設定
-        window_size = 100
-        stride = 50
-        threshold = 0.85
+    # デバッグ用にリサイズされた画像のサイズを確認
+    print(f"Region ({x1}, {y1}, {x2}, {y2}) Resized to: {region_resized.size}")
 
-        for img_file in images:
-            image_path = os.path.join(selected_dir, img_file)
-            image = Image.open(image_path)
-            width, height = image.size
+    # AIMv2で評価
+    inputs = processor(images=region_resized, text=query_text, return_tensors="pt", padding=True)
+    outputs = model(**inputs)
+    probs = outputs.logits_per_image.softmax(dim=-1)
+    # 閾値を超える領域を記録
+    for i, score in enumerate(probs[0]):
+        if score > threshold:
+            refined_results.append((x1, y1, x2, y2, query_text[i], score.item()))
+        # print(f"Region ({x1}, {y1}, {x2}, {y2}) Score: {score:.2f}")
 
-            # 類似度の結果を格納するリスト
-            high_score_regions = []
-            for y in tqdm(range(0, height - window_size + 1, stride)):
-                for x in range(0, width - window_size + 1, stride):
-            # for y in range(0, height - window_size + 1, stride):
-            #     for x in range(0, width - window_size + 1, stride):
-                    region = image.crop((x, y, x + window_size, y + window_size))
-                    inputs = processor(
-                        images=region,
-                        text=[search_text],
-                        return_tensors="pt",
-                        padding=True,
-                    )
+# AIMv2の結果を描画
+draw_aimv2 = image.copy()
+draw = ImageDraw.Draw(draw_aimv2)
 
-                    # モデルで推論
-                    outputs = model(**inputs)
-                    probs = outputs.logits_per_image.softmax(dim=-1)
-                    score = probs[0, 0].item()
+print("Refined Results:")
+for x1, y1, x2, y2, label, score in refined_results:
+    draw.rectangle([(x1, y1), (x2, y2)], outline="blue", width=2)
+    draw.text((x1, y1 - 10), f"{label}: {score:.2f}", fill="blue")
+    print(f"Region ({x1}, {y1}, {x2}, {y2}) Score: {score:.2f}")
 
-                    if score > threshold:
-                        high_score_regions.append((x, y, window_size, window_size, search_text, score))
-
-            # 結果を画像に描画
-            draw_image = image.copy()
-            draw = ImageDraw.Draw(draw_image)
-
-            for region in high_score_regions:
-                x, y, w, h, label, score = region
-                draw.rectangle([(x, y), (x + w, y + h)], outline="red", width=1)
-                draw.text((x, y - 10), f"{label}: {score:.2f}", fill="red")
-
-            # 結果を表示（非ブロッキングモード）
-            plt.figure(figsize=(10, 10))
-            plt.imshow(draw_image)
-            plt.axis("off")
-            plt.title(f"結果: {img_file}")
-            plt.show(block=False)
-
-        # すべての画像を処理後にプロットを閉じる
-        plt.close("all")
-
-window.close()
+# 結果を保存または表示
+draw_yolo.show()  # YOLOの結果（緑色の枠）
+draw_aimv2.show()  # AIMv2の結果（青色の枠）
