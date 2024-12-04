@@ -10,7 +10,7 @@ yolo_model = YOLO("yolov8n.pt")
 # image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/cola3.jpg"
 image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/cola4.jpg"
 font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"  # Ubuntu標準のフォントパス
-font_size = 18  # テキストサイズ
+font_size = 17  # テキストサイズ
 font = ImageFont.truetype(font_path, font_size)# AIMv2モデルのロード
 processor = AutoProcessor.from_pretrained("apple/aimv2-large-patch14-224-lit")
 model = AutoModel.from_pretrained("apple/aimv2-large-patch14-224-lit", trust_remote_code=True)
