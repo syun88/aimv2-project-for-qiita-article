@@ -12,6 +12,7 @@ processor = AutoProcessor.from_pretrained("apple/aimv2-large-patch14-224-lit")
 model = AutoModel.from_pretrained("apple/aimv2-large-patch14-224-lit", trust_remote_code=True)
 
 # 条件テキスト
+# query_text = ["pepsi can", "cola can", "sprite can", "fanta can"]
 query_text = ["pepsi can", "cola can", "sprite can", "fanta can"]
 
 # 類似度の閾値
