@@ -73,11 +73,8 @@ python3 aimv2-large-patch14-224-lit/image_search_from_text_and_show.py
 
 [Qitta DAY3](https://qiita.com/syun88/items/)
 
-AppleのAIMv2でマルチモーダル機能を活用編2 「最近話題になった日本国産のフレームワーク「TkEasyGUI」連携編」
-```commandline
-pip install TkEasyGUI pillow
-pip install japanize-matplotlib
-```
+AppleのAIMv2でマルチモーダル機能を活用編2：「YOLOとの連携で特定物体をテキストで検索」
+検索したい画像は適切なフォルダーに置くこと
 ```commandline
 python3 aimv2-large-patch14-224-lit/main.py 
 ```
