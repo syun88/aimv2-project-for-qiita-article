@@ -78,7 +78,7 @@ AppleのAIMv2でマルチモーダル機能を活用編2 「最近話題にな�
 pip install TkEasyGUI pillow
 pip install japanize-matplotlib
 ```
-```
+```commandline
 python3 aimv2-large-patch14-224-lit/main.py 
 ```
 
