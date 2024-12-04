@@ -75,6 +75,10 @@ python3 aimv2-large-patch14-224-lit/image_search_from_text_and_show.py
 
 AppleのAIMv2でマルチモーダル機能を活用編2：「YOLOとの連携で特定物体をテキストで検索」
 検索したい画像は適切なフォルダーに置くこと
+yolo用ライブラリのインストール
+```commandline
+pip install ultralytics
+```
 ```commandline
 python3 aimv2-large-patch14-224-lit/main.py 
 ```
