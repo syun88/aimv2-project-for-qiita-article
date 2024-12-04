@@ -1,16 +1,17 @@
 from ultralytics import YOLO
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw,ImageFont
 from transformers import AutoProcessor, AutoModel
 import torch
 
 # YOLOモデルのロード
 yolo_model = YOLO("yolov8n.pt")
-# image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/apple.jpg"
+# image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/apple2.jpg"
 # image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/cola2.jpg"
 # image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/cola3.jpg"
 image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/cola4.jpg"
-
-# AIMv2モデルのロード
+font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"  # Ubuntu標準のフォントパス
+font_size = 18  # テキストサイズ
+font = ImageFont.truetype(font_path, font_size)# AIMv2モデルのロード
 processor = AutoProcessor.from_pretrained("apple/aimv2-large-patch14-224-lit")
 model = AutoModel.from_pretrained("apple/aimv2-large-patch14-224-lit", trust_remote_code=True)
 
@@ -47,7 +48,7 @@ for detection in detections:
     confidence = detection.conf.item()
 
     draw.rectangle([(x1, y1), (x2, y2)], outline="green", width=2)
-    draw.text((x1, y1 - 10), f"{label}: {confidence:.2f}", fill="green")
+    draw.text((x1, y1 - 20), f"{label}: {confidence:.2f}", fill="green", font=font)
 
 # AIMv2で条件に一致する領域を特定
 refined_results = []
@@ -85,7 +86,7 @@ draw = ImageDraw.Draw(draw_aimv2)
 print("Refined Results:")
 for x1, y1, x2, y2, label, score in refined_results:
     draw.rectangle([(x1, y1), (x2, y2)], outline="blue", width=2)
-    draw.text((x1, y1 - 10), f"{label}: {score:.2f}", fill="blue")
+    draw.text((x1, y1-20), f"{label}: {score:.2f}", fill="blue",font=font)
     print(f"Region ({x1}, {y1}, {x2}, {y2}) Score: {score:.2f}")
 
 # 結果を保存または表示
