@@ -79,6 +79,7 @@ yolo用ライブラリのインストール
 ```commandline
 pip install ultralytics
 ```
+
 ```commandline
 python3 aimv2-large-patch14-224-lit/main.py 
 ```
