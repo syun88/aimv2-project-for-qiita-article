@@ -5,14 +5,19 @@ import torch
 
 # YOLOモデルのロード
 yolo_model = YOLO("yolov8n.pt")
-image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/apple.jpg"
+# image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/apple.jpg"
+# image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/cola2.jpg"
+# image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/cola3.jpg"
+image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/cola4.jpg"
 
 # AIMv2モデルのロード
 processor = AutoProcessor.from_pretrained("apple/aimv2-large-patch14-224-lit")
 model = AutoModel.from_pretrained("apple/aimv2-large-patch14-224-lit", trust_remote_code=True)
 
 # 条件テキスト
-query_text = ["red apple","green apple"]
+# query_text = ["red apple","green apple"]
+# query_text = ["cola bottle", "cola can", "cola glass"]
+query_text = ["pepsi can", "cola can", "sprite can", "fanra can"]
 # 類似度の結果を格納するリスト
 high_score_regions = []
 threshold = 0.8  # 類似度の閾値
