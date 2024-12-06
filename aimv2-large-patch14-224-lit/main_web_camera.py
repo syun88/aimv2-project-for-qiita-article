@@ -19,7 +19,7 @@ query_text = ["baseball", "green Pringles Chips can", " red Pringles Chips can",
 threshold = 0.8
 
 # Webカメラを開く
-cap = cv2.VideoCapture(2)  # デバイス番号を適宜設定
+cap = cv2.VideoCapture(0)  # デバイス番号を適宜設定
 if not cap.isOpened():
     print("Webカメラを開けませんでした。")
     exit()
