@@ -1,6 +1,6 @@
 import cv2
 from ultralytics import YOLO
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw,ImageFont
 from transformers import AutoProcessor, AutoModel
 import torch
 import numpy as np
@@ -11,9 +11,12 @@ yolo_model = YOLO("yolov8n.pt")  # 軽量モデル推奨
 # AIMv2モデルのロード
 processor = AutoProcessor.from_pretrained("apple/aimv2-large-patch14-224-lit")
 model = AutoModel.from_pretrained("apple/aimv2-large-patch14-224-lit", trust_remote_code=True)
-
+font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"  # Ubuntu標準のフォントパス
+font_size = 17  # テキストサイズ
+font = ImageFont.truetype(font_path, font_size)# AIMv2モデルのロード
 # 条件テキスト
-query_text = ["baseball", "green Pringles Chips can", " red Pringles Chips can","Tomato Soup can","Tomato"]
+# query_text = ["baseball", "green Pringles Chips can", " red Pringles Chips can","Tomato Soup can","Tomato"]
+query_text = ["iphone", "ipad", "headphone","Apple watch","white book","green book"]
 
 # 類似度の閾値
 threshold = 0.8
@@ -62,8 +65,8 @@ try:
             label = yolo_model.names[int(detection.cls)]
             confidence = detection.conf.item()
 
-            draw.rectangle([(x1, y1), (x2, y2)], outline="green", width=2)
-            draw.text((x1, y1 - 10), f"{label}: {confidence:.2f}", fill="green")
+            draw.rectangle([(x1, y1), (x2, y2)], outline="green", width=3)
+            draw.text((x1, y1 - 20), f"{label}: {confidence:.2f}", fill="green",font=font)
 
             # YOLOで検出した領域を切り出し（フィルタリングなし）
             regions.append(image.crop((x1, y1, x2, y2)))
@@ -90,8 +93,8 @@ try:
 
         print("Refined Results:")
         for x1, y1, x2, y2, label, score in refined_regions:
-            draw.rectangle([(x1, y1), (x2, y2)], outline="blue", width=2)
-            draw.text((x1, y1 - 10), f"{label}: {score:.2f}", fill="blue")
+            draw.rectangle([(x1, y1), (x2, y2)], outline="blue", width=3)
+            draw.text((x1, y1 - 20), f"{label}: {score:.2f}", fill="blue",font=font)
             print(f"Region ({x1}, {y1}, {x2}, {y2}) Score: {score:.2f}")
 
         # 結果を表示
