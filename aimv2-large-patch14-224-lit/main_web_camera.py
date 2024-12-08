@@ -6,7 +6,8 @@ import torch
 import numpy as np
 
 # YOLOモデルのロード
-yolo_model = YOLO("yolov8n.pt")  # 軽量モデル推奨
+# yolo_model = YOLO("yolov8n.pt")  # 軽量モデル推奨
+yolo_model = YOLO("yolov11n.pt")  # 軽量モデル推奨
 
 # AIMv2モデルのロード
 processor = AutoProcessor.from_pretrained("apple/aimv2-large-patch14-224-lit")
