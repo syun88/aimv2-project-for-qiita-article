@@ -2,7 +2,7 @@ from ultralytics import YOLO
 from PIL import Image, ImageDraw,ImageFont
 from transformers import AutoProcessor, AutoModel
 import torch
-
+import time
 # YOLOモデルのロード
 yolo_model = YOLO("yolov8n.pt")
 # image_path = "/media/syun/ssd02/python_learning/apple/qiita_project_AIMv2/test_search_image/apple2.jpg"
@@ -52,8 +52,10 @@ for detection in detections:
 
 # AIMv2で条件に一致する領域を特定
 refined_results = []
-
+aim_start = time.time()
+n_list = []
 for detection in detections:
+    aim_start_n = time.time()
     x1, y1, x2, y2 = map(int, detection.xyxy[0])
     # x1 = int(x1 * scale_x)
     # y1 = int(y1 * scale_y)
@@ -79,7 +81,10 @@ for detection in detections:
         if score > threshold:
             refined_results.append((x1, y1, x2, y2, query_text[i], score.item()))
         # print(f"Region ({x1}, {y1}, {x2}, {y2}) Score: {score:.2f}")
+    aim_end_n = time.time()
+    n_list.append(f" {aim_end_n - aim_start_n:.4f} seconds")
 
+aim_end = time.time()
 # AIMv2の結果を描画
 draw_aimv2 = image.copy()
 draw = ImageDraw.Draw(draw_aimv2)
@@ -89,6 +94,13 @@ for x1, y1, x2, y2, label, score in refined_results:
     draw.rectangle([(x1, y1), (x2, y2)], outline="blue", width=2)
     draw.text((x1, y1-20), f"{label}: {score:.2f}", fill="blue",font=font)
     print(f"Region ({x1}, {y1}, {x2}, {y2}) Score: {score:.2f}")
+# 総時間計測: 終了
+end_time = time.time()
+
+for num,i in enumerate(n_list):
+    print(f"object{num+1} cost {i}")
+# 時間の出力
+print(f"all AIMv2 Inference Time: {aim_end - aim_start:.4f} seconds")
 
 # 結果を保存または表示
 draw_yolo.show()  # YOLOの結果（緑色の枠）
