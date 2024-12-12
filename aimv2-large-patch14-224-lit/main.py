@@ -29,9 +29,9 @@ results = yolo_model(image_path)
 detections = results[0].boxes
 
 # スケールを計算
-inference_shape = results[0].orig_shape  # YOLO推論時の画像サイズ
-scale_x = width / inference_shape[1]
-scale_y = height / inference_shape[0]
+# inference_shape = results[0].orig_shape  # YOLO推論時の画像サイズ
+# scale_x = width / inference_shape[1]
+# scale_y = height / inference_shape[0]
 
 # YOLOの結果を描画
 draw_yolo = image.copy()
@@ -39,10 +39,10 @@ draw = ImageDraw.Draw(draw_yolo)
 
 for detection in detections:
     x1, y1, x2, y2 = map(int, detection.xyxy[0])
-    x1 = int(x1 * scale_x)
-    y1 = int(y1 * scale_y)
-    x2 = int(x2 * scale_x)
-    y2 = int(y2 * scale_y)
+    # x1 = int(x1 * scale_x)
+    # y1 = int(y1 * scale_y)
+    # x2 = int(x2 * scale_x)
+    # y2 = int(y2 * scale_y)
 
     label = yolo_model.names[int(detection.cls)]
     confidence = detection.conf.item()
@@ -55,22 +55,23 @@ refined_results = []
 
 for detection in detections:
     x1, y1, x2, y2 = map(int, detection.xyxy[0])
-    x1 = int(x1 * scale_x)
-    y1 = int(y1 * scale_y)
-    x2 = int(x2 * scale_x)
-    y2 = int(y2 * scale_y)
+    # x1 = int(x1 * scale_x)
+    # y1 = int(y1 * scale_y)
+    # x2 = int(x2 * scale_x)
+    # y2 = int(y2 * scale_y)
 
     # YOLOで検出した領域を切り出し
     region = image.crop((x1, y1, x2, y2))
     
     # リサイズ
-    region_resized = region.resize((224, 224), Image.Resampling.LANCZOS)
+    # region_resized = region.resize((224, 224), Image.Resampling.LANCZOS)
 
     # デバッグ用にリサイズされた画像のサイズを確認
-    print(f"Region ({x1}, {y1}, {x2}, {y2}) Resized to: {region_resized.size}")
+    # print(f"Region ({x1}, {y1}, {x2}, {y2}) Resized to: {region_resized.size}")
 
     # AIMv2で評価
-    inputs = processor(images=region_resized, text=query_text, return_tensors="pt", padding=True)
+    # inputs = processor(images=region_resized, text=query_text, return_tensors="pt", padding=True)
+    inputs = processor(images=region, text=query_text, return_tensors="pt", padding=True)
     outputs = model(**inputs)
     probs = outputs.logits_per_image.softmax(dim=-1)
     # 閾値を超える領域を記録
