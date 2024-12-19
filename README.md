@@ -84,7 +84,13 @@ pip install ultralytics
 python3 aimv2-large-patch14-224-lit/main.py 
 ```
 
+# Qiita Day9
 
+[Day9](https://qiita.com/syun88/items/9a4bca43909b990d6efe)
+AppleのAIMv2でマルチモーダル機能を活用編6：リアルタイムWebカメラ推論の挑戦 
+```commandline
+python3 aimv2-large-patch14-224-lit/main_try_speedUP.py
+```
 ## aimv2-project-for-qiita-article
 Apple/aimv2 for-qiita-article
 以下に、モデルのサイズが小さい順に並べたリストを示します。名前の中にある情報（`large` → `huge` → `1B` → `3B` など）や入力解像度（`224` → `336` → `448`）を基準にしています。
