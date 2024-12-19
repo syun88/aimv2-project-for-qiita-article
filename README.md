@@ -83,6 +83,15 @@ pip install ultralytics
 ```commandline
 python3 aimv2-large-patch14-224-lit/main.py 
 ```
+
+# Qiita Day7
+
+[Qiita Day7](https://qiita.com/syun88/items/f94ed38e0ddb95be60f4)
+AppleのAIMv2でマルチモーダル機能を活用編4：YOLOとAIMv2を量子化して効率化を目指す
+```commandline
+python3 aimv2-large-patch14-224-lit/main_quantization.py
+```
+
 # Qiita Day8
 
 [Qiita Day8](https://qiita.com/syun88/items/badd13d4d5974502c7bc)
