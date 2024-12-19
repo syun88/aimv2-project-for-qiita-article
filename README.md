@@ -84,6 +84,15 @@ pip install ultralytics
 python3 aimv2-large-patch14-224-lit/main.py 
 ```
 
+# Qiita Day6
+
+[Qiita Day6](https://qiita.com/syun88/items/dbb0bf118b3159e0ba76)
+AppleのAIMv2でマルチモーダル機能を活用編3：YOLOとweb camera でリアルタイムでテキストで特定物体を検索
+
+```commandline
+python3 aimv2-large-patch14-224-lit/main_camera.py
+```
+
 # Qiita Day7
 
 [Qiita Day7](https://qiita.com/syun88/items/f94ed38e0ddb95be60f4)
